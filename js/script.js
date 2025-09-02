@@ -1,3 +1,165 @@
+const fs = require('fs')
+const abrirArquivo = function(nomeArquivo){
+  // callback: você define, mas não chama
+  function exibirConteudo(erro, conteudo){
+    if(erro){
+      console.log(`Erro: ${erro}`)
+    }
+    else{
+      console.log(
+        `Conteúdo: ${conteudo.toString()}`
+      )
+      const dobro = 
+        Number(conteudo.toString()) * 2
+      const finalizar = (erro) => {
+        if(erro){
+          console.log(
+            `Erro na escrita: ${erro}`
+          )
+        }
+        else{
+          console.log("Escrita ok")
+        }
+        console.log('D')
+      }
+      fs.writeFile(
+        'dobro.txt',
+        dobro.toString(),
+        finalizar
+      )
+    }
+    console.log('C')
+  }
+  fs.readFile(nomeArquivo, exibirConteudo)
+  console.log('B')
+}
+abrirArquivo('arquivo.txt')
+console.log('A')
+
+//Execução síncrona(bloqueante) 
+//Execução assíncrona(não bloqueante)
+//CPU-BOUND
+//IO-BOUND
+// function demorada(){
+//   const atualMais2 = 
+//       new Date().getTime() + 2000
+//   while(new Date().getTime() <= atualMais2);
+//   const d = 8 + 4
+//   return d
+// }
+// const a = 2 + 3
+// const b = 5 + 9
+// //const d = demorada()
+// setTimeout(() => {
+//   const d = demorada()
+//   console.log(`d1: ${d}`)
+// }, 10000)
+// setTimeout(() => {
+//   const d = demorada()
+//   console.log(`d2: ${d}`)
+// }, 500)
+// const e = 2 + a - b
+// console.log(`e: ${e}`)
+
+// const a = 2 + 7
+// const b = 5
+// console.log(a + b)
+
+// console.log('Eu primeiro...')
+// console.log('Agora eu...')
+// console.log('Sempre serei o último...:(')
+
+
+//Objetos Javascript (JSON)
+//JavaScript Object Notation
+//uma calculadora tem marca e modelo. alem disso, ela sabe fazer soma e subtracao de dois numeros. a soma, ela faz com arrow function sem usar return. a subtracao, ela faz com function regular
+
+// const calculadora = {
+//   marca: 'XPTO',
+//   modelo: 'ABC',
+//   operacoes: {
+//     somar: (a, b) => a + b,
+//     subtrair: function(a, b){
+//       return a - b
+//     }   
+//   }
+// }
+// for(let operacao of Object.keys(calculadora.operacoes)){
+//   console.log(`${operacao}: ${calculadora.operacoes[operacao](2, 3)}`)
+  
+// }
+
+// console.log(calculadora.operacoes.somar(2, 3))
+// console.log(calculadora.operacoes.subtrair(2,3))
+// for(let veiculo of concessionaria.veiculos){
+//   console.log(veiculo.placa)  
+// }
+
+//uma concessionária que tem CNPJ e endereço (logradouro, numero, bairro, cidade e estado) e um estoque de veiculos. cada veiculo tem placa, marca e modelo. A concessionaria pode ter a qualquer instante, 0 ou mais veiculos
+// const concessionaria = {
+//   cnpj: '0000000000/0001',
+//   endereco: {
+//     logradouro: 'Avenida ABC',
+//     numero: 12,
+//     bairro: {
+//       nome: 'Vila H',
+//       cep: '00000-000',
+//       cidade: {
+//         nome: 'Itu',
+//         regiao: 'Zona Sul',
+//         numeroHabitantes: 100000,
+//         estado: {
+//           codigo: 'SP',
+//           nome: 'São Paulo'
+//         }
+//       }
+//     }
+//   },
+//   veiculos: [
+//     {
+//       placa: 'ABC-1234',
+//       marca: 'Ford',
+//       modelo: 'Fiesta'
+//     },
+//     {
+//       placa: "JJJ-1234",
+//       marca: 'GM',
+//       modelo: 'Corsa'
+//     }  
+//   ]
+// }
+// // console.log(concessionaria.veiculos[0].modelo)
+// for(let veiculo of concessionaria.veiculos){
+//   console.log(veiculo.placa)  
+// }
+
+//Uma pessoa se chama Maria, tem 21 anos e mora na rua ABC, numero 200, bairro Vila J.
+// const pessoa = {
+//   nome: 'Maria',
+//   idade: 21,
+//   endereco: {
+//     logradouro: 'rua ABC',
+//     numero: 200,
+//     bairro: 'Vila J'
+//   }
+// }
+// console.log(pessoa.endereco.logradouro)
+// console.log(pessoa['endereco']['numero'])
+// console.log(pessoa.endereco['bairro'])
+// console.log(pessoa['endereco'].bairro)
+
+
+//Uma pessoa que se chama João em tem 17 anos
+// const pessoa = {
+//   nome: 'João',
+//   idade: 17  
+// }
+// //. e []
+// console.log(pessoa.nome)
+// console.log(pessoa.idade)
+// console.log(pessoa['nome'])
+// console.log(pessoa['idade'])
+
 // function eAgora(){
 //   let cont = 1
 //   function f1(){
