@@ -28,7 +28,9 @@ app.post('/eventos', (req, res) => {
     funcao(evento.dados)
     // funcoes[evento.tipo](evento.dados)
   }
-  catch(e){}
+  catch(e){
+    console.log('Aqui: ' + e)
+  }
 })
 
 const port = 6000
