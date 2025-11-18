@@ -15,8 +15,21 @@ const funcoes = {
   }
 }
 app.post('/eventos', (req, res) => {
-
+  try{
+    const evento = req.body
+    funcoes[evento.tipo](evento.dados)
+  } 
+  catch(e){}
 })
 
 const port = 7000
-app.listen(port, console.log(`Classificação OK. Porta ${port}.`))
+app.listen(port, async () => {
+  console.log(`Classificação OK. Porta ${port}.`)
+  const { data: eventos } = await axios.get('http://localhost:10000/eventos')
+  for(let evento of eventos){
+    try{
+      funcoes[evento.tipo](evento.dados)
+    }
+    catch(e){}
+  }
+})

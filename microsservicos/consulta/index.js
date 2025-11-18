@@ -3,6 +3,19 @@ const app = express()
 app.use(express.json())
 
 const baseConsulta = {}
+/*
+{
+  1: {
+    id: 1,
+    texto: oi,
+    observacoes: [
+      {idObs: 443iouo5i, texto: tchau, idLembrete: 1, status: aguardando},
+      {}
+    ]
+  }
+}
+
+*/
 
 const funcoes = {
   LembreteCriado: (lembrete) => {
@@ -12,6 +25,11 @@ const funcoes = {
     const observacoes = baseConsulta[observacao.idLembrete]['observacoes'] || []
     observacoes.push(observacao)
     baseConsulta[observacao.idLembrete]['observacoes'] = observacoes
+  },
+  ObservacaoAtualizada: (observacao) => {
+    const observacoes = baseConsulta[observacao.idLembrete]['observacoes']
+    const indice = observacoes.findIndex(o => o.id === observacao.id)
+    observacoes[indice] = observacao
   }
 }
 
@@ -29,7 +47,7 @@ app.post('/eventos', (req, res) => {
     // funcoes[evento.tipo](evento.dados)
   }
   catch(e){
-    console.log('Aqui: ' + e)
+    console.log(e)
   }
 })
 
